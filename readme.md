@@ -1,5 +1,3 @@
-### caption
+### Консольное Java приложение для бронировки авиабилетов
 
-body
 
-[alexr github link](https://github.com/alexr007)
