@@ -5,3 +5,5 @@
 
 # `*.iml` files in all sub-directories
 **/*.iml
+
+**/database.json

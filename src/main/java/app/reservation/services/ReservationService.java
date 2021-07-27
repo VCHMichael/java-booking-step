@@ -1,4 +1,4 @@
 package app.reservation.services;
 
-public class ReservationModel {
+public class ReservationService {
 }
