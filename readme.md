@@ -14,6 +14,11 @@
 - контроллер, сервис и DAO для бронирования
 - unit-тесты для контроллера, сервиса и DAO бронирования
 - code review
+- logger
+- организация рабочего процесса (плагины и зависимости мавена)
 
 ### Tech
 - [Junit5](https://junit.org/junit5/) - Testing framework for Java and the JVM
+- mockito
+- lombok
+- jackson
