@@ -1,5 +1,6 @@
 package app.reservation.services;
 
+import app.logger.Logger;
 import app.reservation.dao.ReservationDao;
 import app.reservation.model.ReservationModel;
 import app.user.model.UserModel;
@@ -10,9 +11,14 @@ import java.util.stream.Collectors;
 
 public class ReservationService {
     private final ReservationDao reservationDao;
+    private final Logger logger = new Logger(ReservationService.class);
 
     public ReservationService() throws IOException {
         reservationDao = new ReservationDao();
+    }
+
+    public ReservationService(ReservationDao reservationDao) {
+        this.reservationDao = reservationDao;
     }
 
     public ReservationModel reserve(List<UserModel> users, long flightId) {

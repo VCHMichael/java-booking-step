@@ -1,22 +1,18 @@
 package app;
 
-import app.reservation.dao.ReservationDao;
-import app.reservation.model.ReservationModel;
+import app.logger.Logger;
+import app.reservation.controller.ReservationController;
 
 import java.io.IOException;
-import java.util.UUID;
 
 public class Main {
   public static void main(String[] args) throws IOException {
+    ReservationController reservationController = new ReservationController();
+    Logger logger = new Logger(Main.class);
 
-    ReservationModel model = new ReservationModel();
-    ReservationDao dao = new ReservationDao();
 
-    System.out.println(dao.findAll());
-
-    dao.create(model);
-    System.out.println(dao.findAll());
-
+    logger.error("zhopa!", new RuntimeException());
+    logger.info("Hello");
 
 //   String uuid = UUID.randomUUID().toString();
 //    System.out.println(uuid);

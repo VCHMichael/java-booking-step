@@ -1,0 +1,24 @@
+Hello
+World
+[Class] - Hello
+[Class] - World
+[Main] - Hello
+[Main] - World
+Wed Jul 28 19:27:55 EEST 2021 [Main] - Hello
+Wed Jul 28 19:27:55 EEST 2021 [Main] - World
+INFO: Wed Jul 28 19:29:20 EEST 2021 [Main] - Hello
+INFO: Wed Jul 28 19:29:20 EEST 2021 [Main] - World
+ERROR: Wed Jul 28 19:35:02 EEST 2021 [Main] - zhopa!
+[app.Main.main(Main.java:13)]
+ERROR: Wed Jul 28 19:45:38 EEST 2021 [Main] - zhopa!
+app.Main.main(Main.java:13)
+ERROR: Wed Jul 28 21:27:19 EEST 2021 [Main] - zhopa!
+app.Main.main(Main.java:17)
+ERROR: Wed Jul 28 21:28:16 EEST 2021 [Main] - zhopa!
+app.Main.main(Main.java:17)
+ERROR: Wed Jul 28 21:34:05 EEST 2021 [Main] - zhopa!
+app.Main.main(Main.java:15)
+INFO: Wed Jul 28 21:34:05 EEST 2021 [Main] - Hello
+ERROR: Wed Jul 28 21:37:28 EEST 2021 [Main] - zhopa!
+app.Main.main(Main.java:15)
+INFO: Wed Jul 28 21:37:28 EEST 2021 [Main] - Hello
