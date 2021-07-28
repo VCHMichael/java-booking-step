@@ -1,10 +1,13 @@
 package app.flight.services;
 
+import app.flight.NoEntityException;
 import app.flight.dao.FlightDao;
 import app.flight.model.Flight;
 
-import java.time.LocalDate;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+
 
 public class FlightServices {
     FlightDao flightDao;
@@ -13,7 +16,7 @@ public class FlightServices {
         this.flightDao = flightDao;
     }
 
-    public Flight getFlightById(int id) {
+    public Flight getFlightById(int id) throws IOException, NoEntityException {
         return flightDao.getFlightById(id);
     }
 
@@ -21,7 +24,7 @@ public class FlightServices {
         return flightDao.getAllFlightsPerDay();
     }
 
-    public ArrayList<Flight> getSearchedFlightsForReservation(String destination, LocalDate date, int ticketsCount) {
+    public ArrayList<Flight> getSearchedFlightsForReservation(String destination, String date, int ticketsCount) throws ParseException {
         return flightDao.getSearchedFlightsForReservation(destination, date, ticketsCount);
     }
 }

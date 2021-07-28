@@ -1,23 +1,21 @@
 package app;
 
-import app.reservation.dao.ReservationDao;
-import app.reservation.model.ReservationModel;
+import app.flight.NoEntityException;
+import app.flight.dao.CollectionFlightsDao;
+
 
 import java.io.IOException;
-import java.util.Date;
+import java.text.ParseException;
+
 
 public class Main {
-  public static void main(String[] args) throws IOException {
-    System.out.println("Hello World");
+  public static void main(String[] args) throws NoEntityException, IOException, ParseException {
 
-    ReservationModel model = ReservationModel.builder()
-            .id(1)
-            .destination("Urugvay")
-            .flightDate(new Date())
-            .build();
-
-    ReservationDao dao = new ReservationDao();
-    dao.create(model);
+    // How to use Flights Examples
+    CollectionFlightsDao collectionFlightsDao = new CollectionFlightsDao();
+    System.out.println(collectionFlightsDao.getFlightById(1));
+    System.out.println(collectionFlightsDao.getAllFlightsPerDay());
+    System.out.println(collectionFlightsDao.getSearchedFlightsForReservation("Picassinos", "2021-07-29", 2));
   }
 
 }

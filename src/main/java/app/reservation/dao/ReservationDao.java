@@ -9,7 +9,7 @@ public class ReservationDao {
     private File database;
 
     public ReservationDao() throws IOException {
-        database = new File("src/main/resources/database.json");
+        database = new File("src/main/resources/flightDatabase.json");
         database.createNewFile();
     }
 
