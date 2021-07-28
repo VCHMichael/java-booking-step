@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "flightId": 3,
+    "passengers": [
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "id": 2,
+    "flightId": 6,
+    "passengers": [
+      4
+    ]
+  },
+  {
+    "id": 3,
+    "flightId": 9,
+    "passengers": [
+      5,
+      6
+    ]
+  },
+  {
+    "id": 4,
+    "flightId": 48,
+    "passengers": [
+      7
+    ]
+  },
+  {
+    "id": 5,
+    "flightId": 33,
+    "passengers": [
+      8,
+      9
+    ]
+  },
+  {
+    "id": 0,
+    "flightId": 0,
+    "passengers": null
+  }
+]

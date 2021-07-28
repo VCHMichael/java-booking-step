@@ -1,0 +1,26 @@
+[{
+  "id": 1,
+  "firstName": "Hettie",
+  "lastName": "Doxsey",
+  "flights":[34]
+}, {
+  "id": 2,
+  "firstName": "Nelia",
+  "lastName": "Wortman",
+  "flights": [44]
+}, {
+  "id": 3,
+  "firstName": "Gannie",
+  "lastName": "Ludgate",
+  "flights": [15]
+}, {
+  "id": 4,
+  "firstName": "Leland",
+  "lastName": "Daughtery",
+  "flights": [4]
+}, {
+  "id": 5,
+  "firstName": "Myrle",
+  "lastName": "Guerner",
+  "flights": [14]
+}]

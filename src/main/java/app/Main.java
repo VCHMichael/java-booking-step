@@ -1,23 +1,20 @@
 package app;
 
-import app.reservation.dao.ReservationDao;
-import app.reservation.model.ReservationModel;
+import app.logger.Logger;
+import app.reservation.controller.ReservationController;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-    System.out.println("Hello World");
+    ReservationController reservationController = new ReservationController();
+    Logger logger = new Logger(Main.class);
 
-    ReservationModel model = ReservationModel.builder()
-            .id(1)
-            .destination("Urugvay")
-            .flightDate(new Date())
-            .build();
 
-    ReservationDao dao = new ReservationDao();
-    dao.create(model);
+    logger.error("zhopa!", new RuntimeException());
+    logger.info("Hello");
+
+//   String uuid = UUID.randomUUID().toString();
+//    System.out.println(uuid);
   }
-
 }
