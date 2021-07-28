@@ -22,3 +22,6 @@ INFO: Wed Jul 28 21:34:05 EEST 2021 [Main] - Hello
 ERROR: Wed Jul 28 21:37:28 EEST 2021 [Main] - zhopa!
 app.Main.main(Main.java:15)
 INFO: Wed Jul 28 21:37:28 EEST 2021 [Main] - Hello
+ERROR: Thu Jul 29 00:39:51 EEST 2021 [Main] - zhopa!
+app.Main.main(Main.java:26)
+INFO: Thu Jul 29 00:39:51 EEST 2021 [Main] - Hello

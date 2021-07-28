@@ -20,7 +20,7 @@ public class CollectionFlightsDao implements FlightDao {
     private final List<Flight> flightBd;
 
     public CollectionFlightsDao() throws IOException {
-        File database = new File("src/main/resources/flightDatabase.json");
+        File database = new File("src/main/resources/flight_db.json");
         ObjectMapper mapper = new ObjectMapper();
         flightBd = mapper.readValue(database, new TypeReference<List<Flight>>() {
         });
