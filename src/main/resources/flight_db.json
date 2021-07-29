@@ -1,7 +1,6 @@
-{
-  "flights": [{
+[{
     "id": 1,
-    "date": "1611795539000",
+    "date": "1627506692877",
     "destination": "Picassinos",
     "seats": 89
   }, {
@@ -16,8 +15,8 @@
     "seats": 0
   }, {
     "id": 4,
-    "date": "1598622755000",
-    "destination": "Pittsburgh",
+    "date": "1627507764670",
+    "destination": "Picassinos",
     "seats": 59
   }, {
     "id": 5,
@@ -221,7 +220,7 @@
     "seats": 49
   }, {
     "id": 45,
-    "date": "1601715543000",
+    "date": "1627504744674",
     "destination": "Göteborg",
     "seats": 30
   }, {
@@ -231,12 +230,12 @@
     "seats": 29
   }, {
     "id": 47,
-    "date": "1617352986000",
+    "date": "1627504761710",
     "destination": "Terangun",
     "seats": 47
   }, {
     "id": 48,
-    "date": "1623562662000",
+    "date": "1627504767772",
     "destination": "Golina",
     "seats": 83
   }, {
@@ -249,53 +248,4 @@
     "date": "1620440916000",
     "destination": "Радовиш",
     "seats": 5
-  }],
-  "reservation":[{
-    "id": 1,
-    "flightId": 3,
-    "passengers": [1, 2, 3]
-  }, {
-    "id": 2,
-    "flightId": 6,
-    "passengers": [4]
-  }, {
-    "id": 3,
-    "flightId": 9,
-    "passengers": [5, 6]
-  }, {
-    "id": 4,
-    "flightId": 48,
-    "passengers": [7]
-  }, {
-    "id": 5,
-    "flightId": 33,
-    "passengers": [8, 9]
-  }],
-  "users":[{
-    "id": 1,
-    "firstName": "Hettie",
-    "lastName": "Doxsey",
-    "flights":[34]
-  }, {
-    "id": 2,
-    "firstName": "Nelia",
-    "lastName": "Wortman",
-    "flights": [44]
-  }, {
-    "id": 3,
-    "firstName": "Gannie",
-    "lastName": "Ludgate",
-    "flights": [15]
-  }, {
-    "id": 4,
-    "firstName": "Leland",
-    "lastName": "Daughtery",
-    "flights": [4]
-  }, {
-    "id": 5,
-    "firstName": "Myrle",
-    "lastName": "Guerner",
-    "flights": [14]
   }]
-
-}
