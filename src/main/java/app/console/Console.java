@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
-import static app.console.services.ConsoleService.readCommand;
-import static app.console.services.ConsoleService.readFlightId;
+
+import static app.console.services.ConsoleService.*;
 
 public class Console {
 
@@ -56,7 +56,11 @@ public class Console {
         });
         mainMenuCommands.put("3", () -> {
             System.out.println("<<< Вы выбрали команду №3 - ПОИСК И БРОНИРОВАНИЕ РЕЙСОВ >>>");
-//            reservationController.reserve();
+            String destination = destination("Введите место назначения");
+            String date = date("Введите желаемую дату вылета. В формате yyyy-mm-dd");
+            int seats = seats("Введите количество пассажиров");
+            ArrayList<Flight> availableFlights =  flightController.getSearchedFlightsForReservation(destination,date,seats);
+            System.out.println(availableFlights);
             return null;
         });
 
