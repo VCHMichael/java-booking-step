@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 public class ReservationModel implements Serializable {
-    private long id;
+    private String id;
     private long flightId;
-    private List<Long> passengers;
+    private List<String> passengers;
 }
