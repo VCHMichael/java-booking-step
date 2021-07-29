@@ -18,8 +18,6 @@ public class Main {
 
 
     public static void main(String[] args) throws NoEntityException, IOException, ParseException {
-//        fc = new FlightController();
-//        rc = new ReservationController();
 
         try {
             Console console = new Console();

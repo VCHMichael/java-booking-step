@@ -46,8 +46,12 @@ public class Console {
         mainMenuCommands.put("2", () -> {
             System.out.println("<<< Вы выбрали команду №2 - ПОСМОТРЕТЬ ИНФОРМАЦИЮ О РЕЙСЕ >>>");
             int idOfFlight = readFlightId("Введите номер интересующего Вас рейса (его ID):");
-            Flight flightByIdID = flightController.getFlightById(idOfFlight);
-            System.out.println(flightByIdID);
+            try {
+                Flight flightByIdID = flightController.getFlightById(idOfFlight);
+                System.out.println(flightByIdID);
+            } catch (Exception e){
+                System.out.println(e);
+            }
             return null;
         });
         mainMenuCommands.put("3", () -> {
