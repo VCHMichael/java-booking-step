@@ -1,10 +1,7 @@
 package app;
 
-import app.logger.Logger;
-import app.reservation.controller.ReservationController;
 import app.flight.NoEntityException;
 import app.flight.dao.CollectionFlightsDao;
-
 import app.logger.Logger;
 import app.reservation.controller.ReservationController;
 
@@ -17,9 +14,6 @@ public class Main {
 
         // How to use Reservation Examples
         ReservationController reservationController = new ReservationController();
-  public static void main(String[] args) throws IOException {
-    ReservationController reservationController = new ReservationController();
-    Logger logger = new Logger(Main.class);
 
         // How to use Flights Examples
         CollectionFlightsDao collectionFlightsDao = new CollectionFlightsDao();
@@ -32,11 +26,11 @@ public class Main {
         logger.error("zhopa!", new RuntimeException());
         logger.info("Hello");
 
+        logger.error("zhopa!", new RuntimeException());
+        logger.info("Hello");
     }
-    logger.error("zhopa!", new RuntimeException());
-    logger.info("Hello");
 
 //   String uuid = UUID.randomUUID().toString();
 //    System.out.println(uuid);
-  }
+
 }
