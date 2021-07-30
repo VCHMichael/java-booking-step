@@ -43,6 +43,8 @@ public class Console {
     public Console() throws IOException {
         flightController = new FlightController();
         reservationController = new ReservationController();
+        userService = new UserService();
+        passengerList = new ArrayList<>();
     }
 
     public static void addComandsMainMenu (){
@@ -77,7 +79,7 @@ public class Console {
                     "\n\n" +
                             "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
                             "Дальнейшие действия:\n" +
-                            "1.\tВыбрать маршрут для бронирования.\n" +
+                            "1.\tЖелаете забронировать билеты?.\n" +
                             "2.\tВернуться в предыдущее меню.\n" +
                             "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
             System.out.println(bookingMenuCommandsStr);
@@ -85,6 +87,14 @@ public class Console {
             input = readCommand("bookingMenu");
             executeCommandByName("bookingMenu", input);
 
+
+            return null;
+        });
+        mainMenuCommands.put("4", () -> {
+            System.out.println("<<< Вы выбрали команду №4 - ОТМЕНИТЬ БРОНИРОВАНИЕ >>>");
+            String idOfBooking = readReservationId("Введите ID Вашего бронирования");
+            reservationController.cancel(idOfBooking);
+            System.out.println("Вы успешно отменили бронирование");
 
             return null;
         });
@@ -123,22 +133,12 @@ public class Console {
 //            userService.create(name,lastName);
             passengerList.add(userService.create(name,lastName));
         }
-        System.out.println(flightRoute);
-        System.out.println(passengerList);
         reservationController.reserve(passengerList,flightRoute.getId());
+        System.out.println(reservationController.reserve(passengerList,flightRoute.getId()));
 
 
-
-
-//        String activeUserLogin = usersController.getActiveUser().getLogin();
-//        Booking newBooking = new Booking(activeUserLogin, flightRoute, passengerList);
-//        bookingsController.createBooking(newBooking);
-//        flightsController.applySeatsReserve4Booking(newBooking);
-//
-//        System.out.println("Вы успешно забронировали билеты. Ниже информация о Вашей брони:");
-//        System.out.println("****************************************************************");
-//        System.out.println(newBooking.prettyFormat());
-//        System.out.println("****************************************************************");
+        System.out.println("Вы успешно забронировали билеты.");
+        System.out.println("****************************************************************");
     }
     private static void initialization() {
         addComandsMainMenu();

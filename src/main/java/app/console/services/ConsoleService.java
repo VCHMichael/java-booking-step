@@ -121,7 +121,6 @@ public class ConsoleService {
         }
         return value;
     }
-
     public static String readString(String prompt) {
         String input;
 
@@ -145,6 +144,34 @@ public class ConsoleService {
             if (!matcher.find() && input.length() < 17 && input.length() > 2)
                 break;
         }
+        input = input.toLowerCase();
+        String formattedInput = input.substring(0, 1).toUpperCase() + input.substring(1);
+        return formattedInput;
+    }
+    public static String readReservationId(String prompt) {
+        String input;
+        System.out.println(prompt);
+        input = scanner.nextLine();
+
+//        while (true) {
+//            System.out.println(prompt);
+//            input = scanner.nextLine();
+//
+//            Matcher matcher = pattern.matcher(input);
+//            if (matcher.find()) {
+//                System.out.println("Вы ввели неправильный формат данных. В данной строке не " +
+//                        "должно быть цифр.");
+//                continue;
+//            }
+//
+//            if (input.length() > 17 || input.length() < 2) {
+//                System.out.println("Размер введенной Вами строки должен быть в диапазоне от 2 до " +
+//                        "17 символов.");
+//            }
+//
+//            if (!matcher.find() && input.length() < 17 && input.length() > 2)
+//                break;
+//        }
         input = input.toLowerCase();
         String formattedInput = input.substring(0, 1).toUpperCase() + input.substring(1);
         return formattedInput;
