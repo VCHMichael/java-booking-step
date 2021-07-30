@@ -3,14 +3,12 @@ package app.console;
 import app.flight.controller.FlightController;
 import app.flight.model.Flight;
 import app.reservation.controller.ReservationController;
+import app.reservation.model.ReservationModel;
 import app.user.model.UserModel;
 import app.user.services.UserService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Callable;
 
 import static app.console.services.ConsoleService.*;
@@ -40,12 +38,7 @@ public class Console {
 
 
 
-    public Console() throws IOException {
-        flightController = new FlightController();
-        reservationController = new ReservationController();
-        userService = new UserService();
-        passengerList = new ArrayList<>();
-    }
+
 
     public static void addComandsMainMenu (){
         mainMenuCommands = new HashMap<>();
@@ -95,13 +88,23 @@ public class Console {
             String idOfBooking = readReservationId("Введите ID Вашего бронирования");
             reservationController.cancel(idOfBooking);
             System.out.println("Вы успешно отменили бронирование");
-
             return null;
         });
-
-
+        mainMenuCommands.put("5", () -> {
+            System.out.println("<<< Вы выбрали команду №5 - МОИ РЕЙСЫ >>>");
+            String name = readString("Для поиска рейса введите имя латиницей");
+            String lastName = readString("Введите фамилию латиницей");
+            Map<String, Long> userReserves = reservationController.getUserReserves(name, lastName);
+            System.out.println(userReserves);
+            return null;
+        });
     }
-
+    public Console() throws IOException {
+        flightController = new FlightController();
+        reservationController = new ReservationController();
+        userService = new UserService();
+        passengerList = new ArrayList<>();
+    }
     public static void addCommandsBookingMenu(){
         bookingMenuCommands = new HashMap<>();
         bookingMenuCommands.put("1", () -> {
@@ -133,18 +136,13 @@ public class Console {
 //            userService.create(name,lastName);
             passengerList.add(userService.create(name,lastName));
         }
-        reservationController.reserve(passengerList,flightRoute.getId());
-        System.out.println(reservationController.reserve(passengerList,flightRoute.getId()));
+        ReservationModel reserve = reservationController.reserve(passengerList, flightRoute.getId());
+        System.out.println(reserve);
 
 
         System.out.println("Вы успешно забронировали билеты.");
         System.out.println("****************************************************************");
     }
-    private static void initialization() {
-        addComandsMainMenu();
-        addCommandsBookingMenu();
-    }
-
     public static void executeCommandByName(String section, String commandName) throws Exception {
         if (section.equals("main")) {
             Callable<Void> commandToBeExecuted = mainMenuCommands.get(commandName);
@@ -155,9 +153,10 @@ public class Console {
           commandToBeExecuted.call();
       }
     }
-
-
-
+    private static void initialization() {
+        addComandsMainMenu();
+        addCommandsBookingMenu();
+    }
     public static void main(String[] args) throws Exception {
         initialization();
 
