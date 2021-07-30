@@ -35,7 +35,7 @@ public class CollectionFlightsDao implements FlightDao {
     }
 
     @Override
-    public ArrayList<Flight> getAllFlightsPerDay() {
+    public  ArrayList<Flight> getAllFlightsPerDay() {
         Date startDate = java.sql.Date.valueOf(LocalDateTime.now().toLocalDate());
         Date endDate = java.sql.Date.valueOf(LocalDateTime.now().plusHours(24).toLocalDate());
         return flightBd.stream()
