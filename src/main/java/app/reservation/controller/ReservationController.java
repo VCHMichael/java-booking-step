@@ -36,6 +36,7 @@ public class ReservationController {
         UserModel user;
         try {
             user = userService.findUserByFullName(firstname, lastname);
+            if (user == null) return null;
             return reservationService.getUserReserves(user);
         } catch (IOException ioException) {
             logger.error("User or Reservation database not working, or system haven't enough rights", ioException);

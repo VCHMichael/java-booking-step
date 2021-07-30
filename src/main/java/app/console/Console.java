@@ -95,7 +95,7 @@ public class Console {
             String name = readString("Для поиска рейса введите имя латиницей");
             String lastName = readString("Введите фамилию латиницей");
             Map<String, Long> userReserves = reservationController.getUserReserves(name, lastName);
-            if(userReserves.size() < 1){
+            if(userReserves != null && userReserves.size() < 1){
                 System.out.println("<<< У вас нет забронированных рейсов >>>");
             }else {
                 System.out.println("<<<Ваши забронированные рейсы >>>");
