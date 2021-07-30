@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ConsoleService {
@@ -100,6 +101,53 @@ public class ConsoleService {
             }
         }
         return Integer.parseInt(input);
+    }
+    public static int readNumber(String prompt, int min, int max) {
+        String input;
+        int value = Integer.MIN_VALUE;
+        while (true) {
+            System.out.println(prompt);
+            input = scanner.nextLine();
+            try {
+                value = Integer.parseInt(input);
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Вы ввели неправильный формат данных.");
+                value = Integer.MIN_VALUE;
+            }
+            if (value >= min && value <= max)
+                break;
+            System.out.println("Пожалуйста введите целое число в диапазоне от " + min + " до " + max);
+        }
+        return value;
+    }
+
+    public static String readString(String prompt) {
+        String input;
+
+        Pattern pattern = Pattern.compile("\\d", Pattern.CASE_INSENSITIVE);
+        while (true) {
+            System.out.println(prompt);
+            input = scanner.nextLine();
+
+            Matcher matcher = pattern.matcher(input);
+            if (matcher.find()) {
+                System.out.println("Вы ввели неправильный формат данных. В данной строке не " +
+                        "должно быть цифр.");
+                continue;
+            }
+
+            if (input.length() > 17 || input.length() < 2) {
+                System.out.println("Размер введенной Вами строки должен быть в диапазоне от 2 до " +
+                        "17 символов.");
+            }
+
+            if (!matcher.find() && input.length() < 17 && input.length() > 2)
+                break;
+        }
+        input = input.toLowerCase();
+        String formattedInput = input.substring(0, 1).toUpperCase() + input.substring(1);
+        return formattedInput;
     }
 
 }
