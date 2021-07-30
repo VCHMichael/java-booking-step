@@ -34,7 +34,8 @@ public class Console {
                     "3.\tПоиск и бронирование рейсов\n" +
                     "4.\tОтменить бронирование\n" +
                     "5.\tМои рейсы\n" +
-                    "6.\tВыход\n";
+                    "6.\tВыход\n" +
+                    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 
 
 
@@ -45,7 +46,15 @@ public class Console {
         mainMenuCommands.put("1", () -> {
             System.out.println("<<< Вы выбрали команду №1 - ОТОБРАЗИТЬ ОНЛАЙН-ТАБЛО >>>");
             ArrayList<Flight> getAllFlightsPerDay = flightController.getAllFlightsPerDay();
-            System.out.println(getAllFlightsPerDay);
+            for(Flight f : getAllFlightsPerDay){
+                String id = "ID рейса: " + f.getId() + " | ";
+                String date = "Дата вылета: " + f.getDate() + " | ";
+                String destination = "Прибытие: " + f.getDestination() + " | ";
+                String seats = "Свободные места: " + f.getSeats() + " | ";
+                String result = id + date + destination + seats;
+                System.out.println(result);
+            }
+
             return null;
         });
         mainMenuCommands.put("2", () -> {
@@ -53,7 +62,12 @@ public class Console {
             int idOfFlight = readFlightId("Введите номер интересующего Вас рейса (его ID):");
             try {
                 Flight flightByIdID = flightController.getFlightById(idOfFlight);
-                System.out.println(flightByIdID);
+                String id = "ID рейса: " + flightByIdID.getId() + " | ";
+                String date = "Дата вылета: " + flightByIdID.getDate() + " | ";
+                String destination = "Прибытие: " + flightByIdID.getDestination() + " | ";
+                String seats = "Свободные места: " + flightByIdID.getSeats() + " | ";
+                String result = id + date + destination + seats;
+                System.out.println(result);
             } catch (Exception e){
                 System.out.println(e);
             }
@@ -65,7 +79,14 @@ public class Console {
             String date = date("Введите желаемую дату вылета. В формате yyyy-mm-dd");
             int seats = seats("Введите количество пассажиров");
             ArrayList<Flight> availableFlights =  flightController.getSearchedFlightsForReservation(destination,date,seats);
-            System.out.println(availableFlights);
+            for(Flight f : availableFlights){
+                String id = "ID рейса: " + f.getId() + " | ";
+                String datestr = "Дата вылета: " + f.getDate() + " | ";
+                String destinationstr = "Прибытие: " + f.getDestination() + " | ";
+                String seatsstr = "Свободные места: " + f.getSeats() + " | ";
+                String result = id + datestr + destinationstr + seatsstr;
+                System.out.println("Доступные рейсы: \n" + result);
+            }
             flightsConsideredAtTheMoment = availableFlights;
 
             String bookingMenuCommandsStr =
@@ -147,10 +168,14 @@ public class Console {
             passengerList.add(userService.create(name,lastName));
         }
         ReservationModel reserve = reservationController.reserve(passengerList, flightRoute.getId());
-        System.out.println(reserve);
+        String s = "ID бронирования:" + reserve.getId() + " | ";
+        String id = "ID рейса: " + reserve.getFlightId() + " | ";
+        String passangers = "Пассажиры: " + reserve.getPassengers() + " | ";
+        System.out.println(s + id + passangers);
 
-
-        System.out.println("Вы успешно забронировали билеты.");
+        System.out.println("****************************************************************");
+        System.out.println("Вы успешно забронировали билеты. Информация по бронированию :");
+        System.out.println(s + id + passangers);
         System.out.println("****************************************************************");
     }
     public static void executeCommandByName(String section, String commandName) throws Exception {
