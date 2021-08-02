@@ -1,11 +1,13 @@
 package app.reservation.dao;
 
 import app.reservation.model.ReservationModel;
+import app.user.model.UserModel;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ReservationDao {
@@ -17,7 +19,6 @@ public class ReservationDao {
     }
 
     public ReservationModel create(ReservationModel reservationModel) throws IOException {
-        // todo id logic
         List<ReservationModel> reservationDbList = findAll();
         reservationDbList.add(reservationModel);
         rewriteDB(reservationDbList);
@@ -27,7 +28,7 @@ public class ReservationDao {
     public ReservationModel update(ReservationModel updatedReservationModel) throws IOException {
         List<ReservationModel> newReservations = findAll().stream()
                 .map(reservationModel -> {
-                    if (reservationModel.getId() == updatedReservationModel.getId()) {
+                    if (reservationModel.getId().equals(updatedReservationModel.getId())) {
                         return updatedReservationModel;
                     } else {
                         return reservationModel;
@@ -39,9 +40,9 @@ public class ReservationDao {
         return updatedReservationModel;
     }
 
-    public void delete(long id) throws IOException {
+    public void delete(String id) throws IOException {
         List<ReservationModel> changedReservations = findAll().stream()
-                .filter(reservationModel -> reservationModel.getId() != id)
+                .filter(reservationModel -> !reservationModel.getId().equals(id))
                 .collect(Collectors.toList());
 
         rewriteDB(changedReservations);
@@ -60,6 +61,12 @@ public class ReservationDao {
                .filter(reservationModel -> reservationModel.getFlightId() == flightId)
                .findFirst()
                .orElse(null);
+    }
+
+    public Map<String, Long> getUserReserves(UserModel user) throws IOException {
+        return findAll().stream()
+                .filter(reservationModel -> reservationModel.getPassengers().contains(user.getId()))
+                .collect(Collectors.toMap(ReservationModel::getId, ReservationModel::getFlightId));
     }
 
     public List<ReservationModel> findAll() throws IOException {

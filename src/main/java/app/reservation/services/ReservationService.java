@@ -7,6 +7,8 @@ import app.user.model.UserModel;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class ReservationService {
@@ -22,7 +24,7 @@ public class ReservationService {
     }
 
     public ReservationModel reserve(List<UserModel> users, long flightId) {
-        List<Long> passengers = users.stream()
+        List<String> passengers = users.stream()
                 .map(UserModel::getId)
                 .collect(Collectors.toList());
 
@@ -33,14 +35,14 @@ public class ReservationService {
                 return reservationDao.update(reservationFromDB);
             } else {
                 ReservationModel newReservation = new ReservationModel();
+                String id = UUID.randomUUID().toString();
                 newReservation.setFlightId(flightId);
                 newReservation.setPassengers(passengers);
-                // todo id logic
-                newReservation.setId(1);
+                newReservation.setId(id);
                 return reservationDao.create(newReservation);
             }
-
         } catch (IOException ioException) {
+            logger.error("Reserves database not working, or system haven't enough rights", ioException);
             return null;
         }
     }
@@ -49,7 +51,11 @@ public class ReservationService {
         return reservationDao.countReservations(flightId);
     }
 
-    public void delete(long id) throws IOException {
+    public void delete(String id) throws IOException {
         reservationDao.delete(id);
+    }
+
+    public Map<String, Long> getUserReserves(UserModel user) throws IOException {
+        return reservationDao.getUserReserves(user);
     }
 }

@@ -11,9 +11,15 @@ import java.util.ArrayList;
 public class FlightController {
     FlightServices flightServices;
 
+
     public FlightController(FlightServices flightServices) {
         this.flightServices = flightServices;
     }
+
+    public FlightController() throws IOException {
+        flightServices = new FlightServices();
+    }
+
 
     public Flight getFlightById(int id) throws IOException, NoEntityException {
         return flightServices.getFlightById(id);
