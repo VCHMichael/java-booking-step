@@ -40,6 +40,7 @@ public class Console {
                     "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
 
 
+
     public static void addComandsMainMenu() {
         mainMenuCommands = new HashMap<>();
         mainMenuCommands.put("1", () -> {
