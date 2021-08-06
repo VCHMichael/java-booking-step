@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-[{"id":"1","firstName":"Hettie","lastName":"Doxsey"},{"id":"2","firstName":"Nelia","lastName":"Wortman"},{"id":"3","firstName":"Gannie","lastName":"Ludgate"},{"id":"4","firstName":"Leland","lastName":"Daughtery"},{"id":"5","firstName":"Myrle","lastName":"Guerner"},{"id":"370b603e-c5ac-43be-8b0c-144cecf6ccd2","firstName":"Max","lastName":"Ivanov"},{"id":"34c8fcbc-3545-4917-aa76-ca33d0d179c0","firstName":"Petya","lastName":"Pupkin"},{"id":"fe55cb6d-1123-456f-8303-4f1570eae7fe","firstName":"Max","lastName":"Pupkin"},{"id":"ffef9f07-e3d1-4e95-be83-ef88fd0e4e0a","firstName":"Vasya","lastName":"Pupkin"},{"id":"558e41a1-4f38-4618-99ac-eade4233efd6","firstName":"Max","lastName":"Ivanov"},{"id":"34d82cb6-ddf4-47dc-ab2a-a32fe29b6ab2","firstName":"Max","lastName":"Ivanov"},{"id":"e45ca27a-477b-49f9-a56f-1677ef0fbe4d","firstName":"Max","lastName":"Ivanov"},{"id":"f5ac54cb-a961-48f6-893e-b03d5c114454","firstName":"Max","lastName":"Ivanov"},{"id":"e33e5484-00eb-4319-83d5-79919c0b9495","firstName":"Max","lastName":"Petrov"}]
-=======
 [
   {
     "id": "1",
@@ -26,36 +23,5 @@
     "id": "5",
     "firstName": "Myrle",
     "lastName": "Guerner"
-  },
-  {
-    "id": "370b603e-c5ac-43be-8b0c-144cecf6ccd2",
-    "firstName": "Max",
-    "lastName": "Ivanov"
-  },
-  {
-    "id": "34c8fcbc-3545-4917-aa76-ca33d0d179c0",
-    "firstName": "Petya",
-    "lastName": "Pupkin"
-  },
-  {
-    "id": "fe55cb6d-1123-456f-8303-4f1570eae7fe",
-    "firstName": "Max",
-    "lastName": "Pupkin"
-  },
-  {
-    "id": "ffef9f07-e3d1-4e95-be83-ef88fd0e4e0a",
-    "firstName": "Vasya",
-    "lastName": "Pupkin"
-  },
-  {
-    "id": "558e41a1-4f38-4618-99ac-eade4233efd6",
-    "firstName": "Max",
-    "lastName": "Ivanov"
-  },
-  {
-    "id": "34d82cb6-ddf4-47dc-ab2a-a32fe29b6ab2",
-    "firstName": "Max",
-    "lastName": "Ivanov"
   }
 ]
->>>>>>> cdcf06e967250671a39633ac4b2a222a2fc5cf35
