@@ -46,15 +46,18 @@ public class Console {
         mainMenuCommands.put("1", () -> {
             System.out.println("<<< Вы выбрали команду №1 - ОТОБРАЗИТЬ ОНЛАЙН-ТАБЛО >>>");
             ArrayList<Flight> getAllFlightsPerDay = flightController.getAllFlightsPerDay();
-            for (Flight f : getAllFlightsPerDay) {
-                String id = "ID рейса: " + f.getId() + " | ";
-                String date = "Дата вылета: " + f.getDate() + " | ";
-                String destination = "Прибытие: " + f.getDestination() + " | ";
-                String seats = "Свободные места: " + f.getSeats() + " | ";
-                String result = id + date + destination + seats;
-                System.out.println(result);
+            if(getAllFlightsPerDay.size() < 1){
+                System.out.println("К сожалению нет доступных рейсов");
+            }else {
+                for (Flight f : getAllFlightsPerDay) {
+                    String id = "ID рейса: " + f.getId() + " | ";
+                    String date = "Дата вылета: " + f.getDate() + " | ";
+                    String destination = "Прибытие: " + f.getDestination() + " | ";
+                    String seats = "Свободные места: " + f.getSeats() + " | ";
+                    String result = id + date + destination + seats;
+                    System.out.println(result);
+                }
             }
-
             return null;
         });
         mainMenuCommands.put("2", () -> {
@@ -79,29 +82,29 @@ public class Console {
             String date = date("Введите желаемую дату вылета. В формате yyyy-mm-dd");
             int seats = seats("Введите количество пассажиров");
             ArrayList<Flight> availableFlights = flightController.getSearchedFlightsForReservation(destination, date, seats);
-            for (Flight f : availableFlights) {
-                String id = "ID рейса: " + f.getId() + " | ";
-                String datestr = "Дата вылета: " + f.getDate() + " | ";
-                String destinationstr = "Прибытие: " + f.getDestination() + " | ";
-                String seatsstr = "Свободные места: " + f.getSeats() + " | ";
-                String result = id + datestr + destinationstr + seatsstr;
-                System.out.println("Доступные рейсы: \n" + result);
+            if(availableFlights.size() < 1){
+                System.out.println("К сожалению нет доступных рейсов");
+            }else{
+                for (Flight f : availableFlights) {
+                    String id = "ID рейса: " + f.getId() + " | ";
+                    String datestr = "Дата вылета: " + f.getDate() + " | ";
+                    String destinationstr = "Прибытие: " + f.getDestination() + " | ";
+                    String seatsstr = "Свободные места: " + f.getSeats() + " | ";
+                    String result = id + datestr + destinationstr + seatsstr;
+                    System.out.println("Доступные рейсы: \n" + result);
+                }
+                flightsConsideredAtTheMoment = availableFlights;
+                String bookingMenuCommandsStr =
+                        "\n\n" +
+                                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+                                "Дальнейшие действия:\n" +
+                                "1.\tЖелаете забронировать билеты?.\n" +
+                                "2.\tВернуться в предыдущее меню.\n" +
+                                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+                System.out.println(bookingMenuCommandsStr);
+                input = readCommand("bookingMenu");
+                executeCommandByName("bookingMenu", input);
             }
-            flightsConsideredAtTheMoment = availableFlights;
-
-            String bookingMenuCommandsStr =
-                    "\n\n" +
-                            "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-                            "Дальнейшие действия:\n" +
-                            "1.\tЖелаете забронировать билеты?.\n" +
-                            "2.\tВернуться в предыдущее меню.\n" +
-                            "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-            System.out.println(bookingMenuCommandsStr);
-
-            input = readCommand("bookingMenu");
-            executeCommandByName("bookingMenu", input);
-
-
             return null;
         });
         mainMenuCommands.put("4", () -> {
@@ -185,10 +188,9 @@ public class Console {
         ReservationModel reserve = reservationController.reserve(passengerList, flightRoute.getId());
         String s = "ID бронирования:" + reserve.getId() + " | ";
         String id = "ID рейса: " + reserve.getFlightId() + " | ";
-        String passangers = "Пассажиры: " + reserve.getPassengers() + " | ";
         System.out.println("****************************************************************");
         System.out.println("Вы успешно забронировали билеты. Информация по бронированию :");
-        System.out.println(s + id + passangers);
+        System.out.println(s + id);
         System.out.println("****************************************************************");
     }
 
@@ -215,7 +217,6 @@ public class Console {
             input = readCommand("main");
             executeCommandByName("main", input);
         }
-
         main(null);
 
     }
