@@ -186,8 +186,6 @@ public class Console {
         String s = "ID бронирования:" + reserve.getId() + " | ";
         String id = "ID рейса: " + reserve.getFlightId() + " | ";
         String passangers = "Пассажиры: " + reserve.getPassengers() + " | ";
-        System.out.println(s + id + passangers);
-
         System.out.println("****************************************************************");
         System.out.println("Вы успешно забронировали билеты. Информация по бронированию :");
         System.out.println(s + id + passangers);
