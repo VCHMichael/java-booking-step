@@ -1,9 +1,9 @@
-package app.reservation.services;
+package app.service;
 
 import app.logger.Logger;
-import app.reservation.dao.ReservationDao;
-import app.reservation.model.ReservationModel;
-import app.user.model.UserModel;
+import app.dao.ReservationDao;
+import app.model.ReservationModel;
+import app.model.UserModel;
 
 import java.io.IOException;
 import java.util.List;

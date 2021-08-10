@@ -1,6 +1,6 @@
-package app.user.dao;
+package app.dao;
 
-import app.user.model.UserModel;
+import app.model.UserModel;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

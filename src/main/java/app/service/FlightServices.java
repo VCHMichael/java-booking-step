@@ -1,9 +1,9 @@
-package app.flight.services;
+package app.service;
 
-import app.flight.NoEntityException;
-import app.flight.dao.CollectionFlightsDao;
-import app.flight.dao.FlightDao;
-import app.flight.model.Flight;
+import app.exception.NoEntityException;
+import app.dao.CollectionFlightsDao;
+import app.dao.FlightDao;
+import app.model.FlightModel;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -20,15 +20,15 @@ public class FlightServices {
         this.flightDao = new CollectionFlightsDao();
     }
 
-    public Flight getFlightById(int id) throws IOException, NoEntityException {
+    public FlightModel getFlightById(int id) throws IOException, NoEntityException {
         return flightDao.getFlightById(id);
     }
 
-    public ArrayList<Flight> getAllFlightsPerDay() {
+    public ArrayList<FlightModel> getAllFlightsPerDay() {
         return flightDao.getAllFlightsPerDay();
     }
 
-    public ArrayList<Flight> getSearchedFlightsForReservation(String destination, String date, int ticketsCount) throws ParseException {
+    public ArrayList<FlightModel> getSearchedFlightsForReservation(String destination, String date, int ticketsCount) throws ParseException {
         return flightDao.getSearchedFlightsForReservation(destination, date, ticketsCount);
     }
 }

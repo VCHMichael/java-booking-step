@@ -1,8 +1,9 @@
 package app.reservation.services;
 
-import app.reservation.dao.ReservationDao;
-import app.reservation.model.ReservationModel;
-import app.user.model.UserModel;
+import app.dao.ReservationDao;
+import app.model.ReservationModel;
+import app.service.ReservationService;
+import app.model.UserModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

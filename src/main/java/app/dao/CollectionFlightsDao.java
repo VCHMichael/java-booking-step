@@ -1,7 +1,7 @@
-package app.flight.dao;
+package app.dao;
 
-import app.flight.NoEntityException;
-import app.flight.model.Flight;
+import app.exception.NoEntityException;
+import app.model.FlightModel;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -17,38 +17,38 @@ import java.util.stream.Collectors;
 
 
 public class CollectionFlightsDao implements FlightDao {
-    private final List<Flight> flightBd;
+    private final List<FlightModel> flightModelBd;
 
     public CollectionFlightsDao() throws IOException {
         File database = new File("src/main/resources/flight_db.json");
         ObjectMapper mapper = new ObjectMapper();
-        flightBd = mapper.readValue(database, new TypeReference<List<Flight>>() {
+        flightModelBd = mapper.readValue(database, new TypeReference<List<FlightModel>>() {
         });
     }
 
     @Override
-    public Flight getFlightById(int id) throws NoEntityException {
-        return flightBd.stream()
+    public FlightModel getFlightById(int id) throws NoEntityException {
+        return flightModelBd.stream()
                 .filter(e -> e.getId() == id)
                 .findFirst()
                 .orElseThrow(() -> new NoEntityException(id));
     }
 
     @Override
-    public  ArrayList<Flight> getAllFlightsPerDay() {
+    public  ArrayList<FlightModel> getAllFlightsPerDay() {
         Date startDate = java.sql.Date.valueOf(LocalDateTime.now().toLocalDate());
         Date endDate = java.sql.Date.valueOf(LocalDateTime.now().plusHours(24).toLocalDate());
-        return flightBd.stream()
+        return flightModelBd.stream()
                 .filter(e -> e.getDate().after(startDate) && e.getDate().before(endDate))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override
-    public ArrayList<Flight> getSearchedFlightsForReservation(String destination, String date, int ticketsCount) throws ParseException {
+    public ArrayList<FlightModel> getSearchedFlightsForReservation(String destination, String date, int ticketsCount) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date userDate = sdf.parse(date);
 
-        return flightBd.stream()
+        return flightModelBd.stream()
                 .filter(e -> e.getDestination().toLowerCase().equals(destination.toLowerCase()))
                 .filter(e -> e.getSeats() > ticketsCount)
                 .filter(e -> {

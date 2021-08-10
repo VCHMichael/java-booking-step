@@ -1,6 +1,6 @@
-package app.user.services;
-import app.user.dao.UserDao;
-import app.user.model.UserModel;
+package app.service;
+import app.dao.UserDao;
+import app.model.UserModel;
 
 import java.io.IOException;
 import java.util.UUID;

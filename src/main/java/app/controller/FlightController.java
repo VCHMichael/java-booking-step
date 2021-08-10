@@ -1,8 +1,8 @@
-package app.flight.controller;
+package app.controller;
 
-import app.flight.NoEntityException;
-import app.flight.model.Flight;
-import app.flight.services.FlightServices;
+import app.exception.NoEntityException;
+import app.model.FlightModel;
+import app.service.FlightServices;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -21,15 +21,15 @@ public class FlightController {
     }
 
 
-    public Flight getFlightById(int id) throws IOException, NoEntityException {
+    public FlightModel getFlightById(int id) throws IOException, NoEntityException {
         return flightServices.getFlightById(id);
     }
 
-    public ArrayList<Flight> getAllFlightsPerDay() {
+    public ArrayList<FlightModel> getAllFlightsPerDay() {
         return flightServices.getAllFlightsPerDay();
     }
 
-    public ArrayList<Flight> getSearchedFlightsForReservation(String destination, String date, int ticketsCount) throws ParseException {
+    public ArrayList<FlightModel> getSearchedFlightsForReservation(String destination, String date, int ticketsCount) throws ParseException {
         return flightServices.getSearchedFlightsForReservation(destination, date, ticketsCount);
     }
 }
