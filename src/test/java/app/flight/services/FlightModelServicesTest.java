@@ -1,8 +1,9 @@
 package app.flight.services;
 
-import app.flight.NoEntityException;
-import app.flight.dao.FlightDao;
-import app.flight.model.Flight;
+import app.exception.NoEntityException;
+import app.dao.FlightDao;
+import app.model.FlightModel;
+import app.service.FlightServices;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,16 +17,16 @@ import java.util.Date;
 import static org.mockito.Mockito.*;
 
 
-class FlightServicesTest {
+class FlightModelServicesTest {
     private FlightServices flightServicesTest;
-    Flight flightModel;
+    FlightModel flightModel;
     @BeforeEach
     public void init() throws ParseException, IOException, NoEntityException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date testDate = sdf.parse("2021-07-29");
         FlightDao flightDaoTest = mock(FlightDao.class);
         flightServicesTest = new FlightServices(flightDaoTest);
-        flightModel = new Flight();
+        flightModel = new FlightModel();
         flightModel.setId(1);
         flightModel.setDestination("Paris");
         flightModel.setSeats(10);

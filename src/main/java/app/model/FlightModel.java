@@ -1,10 +1,10 @@
-package app.flight.model;
+package app.model;
 
 import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Flight {
+public class FlightModel {
     private int id;
     private Date date;
     private String destination;

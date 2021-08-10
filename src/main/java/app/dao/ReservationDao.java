@@ -1,7 +1,7 @@
-package app.reservation.dao;
+package app.dao;
 
-import app.reservation.model.ReservationModel;
-import app.user.model.UserModel;
+import app.model.ReservationModel;
+import app.model.UserModel;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

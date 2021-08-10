@@ -1,22 +1,22 @@
-package app.console;
+package app;
 
-import app.flight.controller.FlightController;
-import app.flight.model.Flight;
+import app.controller.FlightController;
+import app.model.FlightModel;
 import app.logger.Logger;
-import app.reservation.controller.ReservationController;
-import app.reservation.model.ReservationModel;
-import app.user.model.UserModel;
-import app.user.services.UserService;
+import app.controller.ReservationController;
+import app.model.ReservationModel;
+import app.model.UserModel;
+import app.service.UserService;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.Callable;
 
-import static app.console.services.ConsoleService.*;
+import static app.service.ConsoleService.*;
 
 public class Console {
     private static final Logger logger = new Logger(Console.class);
-    private static ArrayList<Flight> flightsConsideredAtTheMoment;
+    private static ArrayList<FlightModel> flightsConsideredAtTheMoment;
 
     private static FlightController flightController;
     private static ReservationController reservationController;
@@ -45,11 +45,11 @@ public class Console {
         mainMenuCommands = new HashMap<>();
         mainMenuCommands.put("1", () -> {
             System.out.println("<<< Вы выбрали команду №1 - ОТОБРАЗИТЬ ОНЛАЙН-ТАБЛО >>>");
-            ArrayList<Flight> getAllFlightsPerDay = flightController.getAllFlightsPerDay();
+            ArrayList<FlightModel> getAllFlightsPerDay = flightController.getAllFlightsPerDay();
             if(getAllFlightsPerDay.size() < 1){
                 System.out.println("К сожалению нет доступных рейсов");
             }else {
-                for (Flight f : getAllFlightsPerDay) {
+                for (FlightModel f : getAllFlightsPerDay) {
                     String id = "ID рейса: " + f.getId() + " | ";
                     String date = "Дата вылета: " + f.getDate() + " | ";
                     String destination = "Прибытие: " + f.getDestination() + " | ";
@@ -64,11 +64,11 @@ public class Console {
             System.out.println("<<< Вы выбрали команду №2 - ПОСМОТРЕТЬ ИНФОРМАЦИЮ О РЕЙСЕ >>>");
             int idOfFlight = readFlightId("Введите номер интересующего Вас рейса (его ID):");
             try {
-                Flight flightByIdID = flightController.getFlightById(idOfFlight);
-                String id = "ID рейса: " + flightByIdID.getId() + " | ";
-                String date = "Дата вылета: " + flightByIdID.getDate() + " | ";
-                String destination = "Прибытие: " + flightByIdID.getDestination() + " | ";
-                String seats = "Свободные места: " + flightByIdID.getSeats() + " | ";
+                FlightModel flightModelByIdID = flightController.getFlightById(idOfFlight);
+                String id = "ID рейса: " + flightModelByIdID.getId() + " | ";
+                String date = "Дата вылета: " + flightModelByIdID.getDate() + " | ";
+                String destination = "Прибытие: " + flightModelByIdID.getDestination() + " | ";
+                String seats = "Свободные места: " + flightModelByIdID.getSeats() + " | ";
                 String result = id + date + destination + seats;
                 System.out.println(result);
             } catch (Exception e) {
@@ -81,11 +81,11 @@ public class Console {
             String destination = destination("Введите место назначения");
             String date = date("Введите желаемую дату вылета. В формате yyyy-mm-dd");
             int seats = seats("Введите количество пассажиров");
-            ArrayList<Flight> availableFlights = flightController.getSearchedFlightsForReservation(destination, date, seats);
-            if(availableFlights.size() < 1){
+            ArrayList<FlightModel> availableFlightModels = flightController.getSearchedFlightsForReservation(destination, date, seats);
+            if(availableFlightModels.size() < 1){
                 System.out.println("К сожалению нет доступных рейсов");
             }else{
-                for (Flight f : availableFlights) {
+                for (FlightModel f : availableFlightModels) {
                     String id = "ID рейса: " + f.getId() + " | ";
                     String datestr = "Дата вылета: " + f.getDate() + " | ";
                     String destinationstr = "Прибытие: " + f.getDestination() + " | ";
@@ -93,7 +93,7 @@ public class Console {
                     String result = id + datestr + destinationstr + seatsstr;
                     System.out.println("Доступные рейсы: \n" + result);
                 }
-                flightsConsideredAtTheMoment = availableFlights;
+                flightsConsideredAtTheMoment = availableFlightModels;
                 String bookingMenuCommandsStr =
                         "\n\n" +
                                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
@@ -125,11 +125,11 @@ public class Console {
                 System.out.println("<<<Ваши забронированные рейсы >>>");
                 userReserves.forEach((reservationId, flightId) -> {
                     try {
-                        Flight flightByIdID = flightController.getFlightById(Math.toIntExact(flightId));
-                        String id = "ID рейса: " + flightByIdID.getId() + " | ";
-                        String date = "Дата вылета: " + flightByIdID.getDate() + " | ";
-                        String destination = "Прибытие: " + flightByIdID.getDestination() + " | ";
-                        String seats = "Свободные места: " + flightByIdID.getSeats() + " | ";
+                        FlightModel flightModelByIdID = flightController.getFlightById(Math.toIntExact(flightId));
+                        String id = "ID рейса: " + flightModelByIdID.getId() + " | ";
+                        String date = "Дата вылета: " + flightModelByIdID.getDate() + " | ";
+                        String destination = "Прибытие: " + flightModelByIdID.getDestination() + " | ";
+                        String seats = "Свободные места: " + flightModelByIdID.getSeats() + " | ";
                         String result = id + date + destination + seats;
                         System.out.println(result);
                     } catch (Exception e) {
@@ -175,7 +175,7 @@ public class Console {
         // из-за того, что нумерация отфильтрованных маршрутов на экране начинается с единицы, а
         // индексы в структуре данных ArrayList начинаются с ноля. Поэтому мы и делаем эту
         // корректировку на -1.
-        Flight flightRoute = flightsConsideredAtTheMoment.get(indexOfItemInList);
+        FlightModel flightModelRoute = flightsConsideredAtTheMoment.get(indexOfItemInList);
 
         int numbOfPassengers = readNumber("Введите количество пассажиров, для которых Вы " +
                 "хотите приобрести билеты:", 1, 10);
@@ -185,7 +185,7 @@ public class Console {
 //            userService.create(name,lastName);
             passengerList.add(userService.create(name, lastName));
         }
-        ReservationModel reserve = reservationController.reserve(passengerList, flightRoute.getId());
+        ReservationModel reserve = reservationController.reserve(passengerList, flightModelRoute.getId());
         String s = "ID бронирования:" + reserve.getId() + " | ";
         String id = "ID рейса: " + reserve.getFlightId() + " | ";
         System.out.println("****************************************************************");

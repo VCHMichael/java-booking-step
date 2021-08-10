@@ -1,10 +1,10 @@
-package app.reservation.controller;
+package app.controller;
 
 import app.logger.Logger;
-import app.reservation.model.ReservationModel;
-import app.reservation.services.ReservationService;
-import app.user.model.UserModel;
-import app.user.services.UserService;
+import app.model.ReservationModel;
+import app.service.ReservationService;
+import app.model.UserModel;
+import app.service.UserService;
 
 import java.io.IOException;
 import java.util.List;

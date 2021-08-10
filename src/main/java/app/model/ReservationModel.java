@@ -1,4 +1,4 @@
-package app.reservation.model;
+package app.model;
 
 import lombok.Data;
 

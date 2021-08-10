@@ -1,7 +1,8 @@
 package app.user.services;
 
-import app.user.dao.UserDao;
-import app.user.model.UserModel;
+import app.dao.UserDao;
+import app.model.UserModel;
+import app.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

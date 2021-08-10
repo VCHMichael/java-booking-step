@@ -1,4 +1,4 @@
-package app.flight;
+package app.exception;
 
 public class NoEntityException extends Exception {
     private final int id;

@@ -1,4 +1,4 @@
-package app.console.services;
+package app.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
