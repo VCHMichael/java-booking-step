@@ -16,12 +16,6 @@ public class Logger {
     private final Class clazz;
 
     public Logger(Class clazz) {
-        File log = new File(logFilePath);
-        try {
-            log.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         this.clazz = clazz;
     }
 
