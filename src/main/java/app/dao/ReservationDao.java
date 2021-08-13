@@ -8,14 +8,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ReservationDao {
     private File reservationDB;
 
-    public ReservationDao() {
-        reservationDB =  new File(Objects.requireNonNull(this.getClass().getClassLoader().getResource("reservation_db.json")).toString());
+    public ReservationDao() throws IOException {
+        reservationDB = new File("src/main/resources/reservation_db.json");
+        reservationDB.createNewFile();
     }
 
     public ReservationModel create(ReservationModel reservationModel) throws IOException {

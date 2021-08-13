@@ -1,6 +1,5 @@
 package app.logger;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,12 +15,6 @@ public class Logger {
     private final Class clazz;
 
     public Logger(Class clazz) {
-        File log = new File(logFilePath);
-        try {
-            log.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         this.clazz = clazz;
     }
 

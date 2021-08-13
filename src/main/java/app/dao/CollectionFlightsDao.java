@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -21,7 +20,7 @@ public class CollectionFlightsDao implements FlightDao {
     private final List<FlightModel> flightModelBd;
 
     public CollectionFlightsDao() throws IOException {
-        InputStream database = this.getClass().getClassLoader().getResourceAsStream("flight_db.json");
+        File database = new File("src/main/resources/flight_db.json");
         ObjectMapper mapper = new ObjectMapper();
         flightModelBd = mapper.readValue(database, new TypeReference<List<FlightModel>>() {
         });
