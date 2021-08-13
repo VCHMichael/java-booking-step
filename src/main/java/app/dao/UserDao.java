@@ -6,13 +6,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
 import java.util.List;
+import java.util.Objects;
 
 public class UserDao {
     private File userDB;
 
-    public UserDao() throws IOException {
-        userDB = new File("src/main/resources/user_db.json");
-        userDB.createNewFile();
+    public UserDao() {
+        userDB = new File(Objects.requireNonNull(this.getClass().getClassLoader().getResource("user_db.json")).toString());
     }
 
     public UserModel create(UserModel userModel) throws IOException {
